@@ -1,0 +1,10 @@
+mercantile~=1.2.1
+requests~=2.32.3
+python-dotenv~=1.0.1
+urllib3~=2.2.2
+vt2geojson~=0.2.1
+pandas~=2.2.2
+geopandas~=1.0.1
+numpy~=2.0.0
+shapely~=2.0.4
+tqdm~=4.66.4
