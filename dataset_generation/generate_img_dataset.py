@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from dataset_generation.image_scraper import get_image_from_area
 
@@ -23,6 +25,13 @@ def generate_img_dataset(file_path:str):
 
 
 if __name__ == '__main__':
+    img_dir = './images'
+    metadata_dir = './metadata'
+    if not os.path.exists(img_dir):
+        os.makedirs(img_dir)
+    if not os.path.exists(metadata_dir):
+        os.makedirs(metadata_dir)
+
     initialize_VPN(area_input=['complete rotation'])
     filepath = input('Enter the path to the coordinates dataset: ')
     generate_img_dataset(file_path=filepath)
