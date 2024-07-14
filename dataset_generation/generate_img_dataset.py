@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-from dataset_generation.nordvpn_switcher.nordvpn_switch import rotate_VPN, initialize_VPN, terminate_VPN
+from nordvpn_switcher.nordvpn_switch import rotate_VPN, initialize_VPN, terminate_VPN
 from image_scraper import get_image_from_area
 
 
