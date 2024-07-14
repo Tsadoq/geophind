@@ -1,7 +1,7 @@
 import os
 
 import pandas as pd
-from dataset_generation.image_scraper import get_image_from_area
+from .image_scraper import get_image_from_area
 
 
 def generate_img_dataset(file_path:str):
