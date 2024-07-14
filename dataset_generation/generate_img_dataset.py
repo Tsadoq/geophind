@@ -33,7 +33,7 @@ if __name__ == '__main__':
         os.makedirs(metadata_dir)
 
     initialize_VPN(area_input=['complete rotation'])
-    filepath = input('Enter the path to the coordinates dataset: ')
+    filepath = './coord_points.pkl'
     generate_img_dataset(file_path=filepath)
     terminate_VPN(instructions=None)
 
