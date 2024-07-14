@@ -13,7 +13,7 @@ def generate_img_dataset(file_path:str):
             print(f'Processing {i} of {len(df)}')
         if i % 1000 == 0:
             print('Changing connection using NordVPN')
-            rotate_VPN(instructions=None)
+            rotate_VPN()
         lat = df.iloc[i]['point'].y
         lon = df.iloc[i]['point'].x
         country = df.iloc[i]['geounit']
