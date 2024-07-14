@@ -1,7 +1,9 @@
 import os
 
 import pandas as pd
-from .image_scraper import get_image_from_area
+from nordvpn_switcher import rotate_VPN, terminate_VPN, initialize_VPN
+
+from image_scraper import get_image_from_area
 
 
 def generate_img_dataset(file_path:str):
