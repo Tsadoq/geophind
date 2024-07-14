@@ -13,7 +13,7 @@ def generate_img_dataset(file_path:str):
             print(f'Processing {i} of {len(df)}')
         if i % 1000 == 0:
             print('Changing connection using NordVPN')
-            rotate_VPN()
+            rotate_VPN(instructions=None)
         lat = df.iloc[i]['point'].y
         lon = df.iloc[i]['point'].x
         country = df.iloc[i]['geounit']
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     if not os.path.exists(metadata_dir):
         os.makedirs(metadata_dir)
 
-    initialize_VPN(area_input=['complete rotation'])
+    initialize_VPN(skip_settings=1, area_input=['complete rotation'])
     filepath = './coord_points.pkl'
     generate_img_dataset(file_path=filepath)
     terminate_VPN(instructions=None)
