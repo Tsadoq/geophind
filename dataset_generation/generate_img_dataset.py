@@ -22,6 +22,7 @@ def generate_img_dataset(file_path:str):
             lat=lat,
             lon=lon,
             country=country,
+            max_distance_meters=100_000
         )
         if i % 10 == 0:
             print(f'You still have {tot_tiles} before sleeping for one day')
