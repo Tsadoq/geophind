@@ -1,29 +1,36 @@
 import os
+from time import sleep
 
 import pandas as pd
 
-from nordvpn_switcher.nordvpn_switch import rotate_VPN, initialize_VPN, terminate_VPN
 from image_scraper import get_image_from_area
 
 
 def generate_img_dataset(file_path:str):
+    tot_tiles = 49_000
     df = pd.read_pickle(file_path)
     for i in range(0, len(df)):
         if i % 10 == 0:
             print(f'Processing {i} of {len(df)}')
         if i % 1000 == 0:
-            print('Changing connection using NordVPN')
-            rotate_VPN()
+            print('Waiting 10 minutes')
+            sleep(600)
         lat = df.iloc[i]['point'].y
         lon = df.iloc[i]['point'].x
         country = df.iloc[i]['geounit']
-        points = get_image_from_area(
+        points, n_tiles = get_image_from_area(
             lat=lat,
             lon=lon,
             country=country,
         )
+        if i % 10 == 0:
+            print(f'You still have {tot_tiles} before sleeping for one day')
+        tot_tiles -= n_tiles
         if points:
             pd.DataFrame(points).to_csv(f'./metadata/{i:10}.csv')
+        if tot_tiles <= 0:
+            print('Finished the amount of tiles that can be processed per day, waiting 24 hours')
+            sleep(60*60*24)
 
 
 if __name__ == '__main__':
@@ -34,8 +41,6 @@ if __name__ == '__main__':
     if not os.path.exists(metadata_dir):
         os.makedirs(metadata_dir)
 
-    initialize_VPN(save=1, area_input=['complete rotation'])
     filepath = './coord_points.pkl'
     generate_img_dataset(file_path=filepath)
-    terminate_VPN(instructions=None)
 
