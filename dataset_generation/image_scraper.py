@@ -18,7 +18,6 @@ def get_image_from_area(
         max_images: int = 20,
         basepath: str = './images',
 ):
-    n_tiles = 0
     lon_coef = 0.000002
     lat_coef = 0.00001
 
@@ -69,7 +68,7 @@ def get_image_from_area(
                         )
                         counter += 1
                 if counter >= max_images:
-                    return list_of_images_info
+                    return list_of_images_info, n_tiles
         return list_of_images_info, n_tiles
     except Exception as e:
         print(e)
